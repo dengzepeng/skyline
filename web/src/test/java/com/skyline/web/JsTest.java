@@ -20,12 +20,19 @@ public class JsTest {
         Resource resource = new ClassPathResource("/scripts/test.js");
         InputStream inputStream = resource.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String jsStr = reader.readLine();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        String str = null;
+        while ((str = reader.readLine()) != null){
+            stringBuilder.append(str);
+        }
+
+
         reader.close();
         inputStream.close();
 
-        System.out.println(jsStr);
-        engine.eval(jsStr);
+        System.out.println(stringBuilder);
+        engine.eval(stringBuilder.toString());
 
         Invocable invocable = (Invocable) engine;
         JSONObject jsonObject = new JSONObject();
