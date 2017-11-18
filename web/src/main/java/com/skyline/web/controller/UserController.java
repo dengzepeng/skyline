@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 @RestController
@@ -25,5 +32,43 @@ public class UserController {
         CommonLog.info("hello dzp");
         List<TUser> list = userService.findAll();
         return ResultInfo.success(list);
+    }
+
+    static TUser addUser(ScriptEngine engine) throws ScriptException, IOException, NoSuchMethodException {
+
+        URL url = new URL("http://orpz1adxx.bkt.clouddn.com/addUser.js");
+        InputStream is = new BufferedInputStream(url.openStream());
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+        StringBuilder stringBuilder = new StringBuilder();
+        String str = null;
+        while ((str = reader.readLine()) != null){
+            stringBuilder.append(str);
+        }
+
+        reader.close();
+        is.close();
+
+        engine.eval(stringBuilder.toString());
+        Invocable invocable = (Invocable) engine;
+        TUser user = new TUser();
+        user.setUserId("123");
+        user.setUsername("邓泽鹏");
+        user.setPassword("123456");
+        return (TUser) invocable.invokeFunction("addUser",user);
+    }
+
+    //http://orpz1adxx.bkt.clouddn.com/addUser.js
+
+    /**
+     * 使用动态脚本修改java对象Demo
+     * @param args
+     * @throws ScriptException
+     * @throws IOException
+     * @throws NoSuchMethodException
+     */
+    public static void main(String[] args) throws ScriptException, IOException, NoSuchMethodException {
+        TUser user = addUser(new ScriptEngineManager().getEngineByName("nashorn"));
+        System.out.println(user.getUserId()+","+user.getUsername()+","+user.getPassword());
     }
 }
