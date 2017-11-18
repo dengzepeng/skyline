@@ -1,4 +1,4 @@
-package com.skyline.web.interceptor;
+package com.skyline.common.interceptor;
 
 import com.skyline.common.log.CommonLog;
 import com.skyline.common.utils.CommUtil;

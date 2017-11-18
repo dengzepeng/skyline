@@ -1,6 +1,6 @@
 package com.skyline.web.config;
 
-import com.skyline.web.interceptor.CommonInterceptor;
+import com.skyline.common.interceptor.CommonInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
