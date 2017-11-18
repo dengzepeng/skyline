@@ -1,6 +1,7 @@
 package com.skyline.web.controller;
 
 
+import com.skyline.common.page.ResultInfo;
 import com.skyline.entity.po.TUser;
 import com.skyline.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class UserController {
 
 
     @GetMapping("findAll")
-    public List<TUser> findAll(){
-        return userService.findAll();
+    public ResultInfo findAll(){
+        List<TUser> list = userService.findAll();
+        return ResultInfo.success(list);
     }
 }
