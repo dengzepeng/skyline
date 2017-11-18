@@ -1,6 +1,7 @@
 package com.skyline.web.controller;
 
 
+import com.skyline.common.log.CommonLog;
 import com.skyline.common.page.ResultInfo;
 import com.skyline.entity.po.TUser;
 import com.skyline.service.UserService;
@@ -21,6 +22,7 @@ public class UserController {
 
     @GetMapping("findAll")
     public ResultInfo findAll(){
+        CommonLog.info("hello dzp");
         List<TUser> list = userService.findAll();
         return ResultInfo.success(list);
     }
