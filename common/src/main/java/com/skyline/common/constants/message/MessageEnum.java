@@ -12,13 +12,12 @@ public enum MessageEnum {
 	 */
 
 	//系统
-	SYSTEM_EXCEPTION("70000","系统发生异常"),
-	VALIDATE_ERROR("70001","参数校验不通过"),
+	SYSTEM_EXCEPTION("00000","系统发生异常"),
+	VALIDATE_ERROR("00001","参数校验不通过"),
 
 
 	//登录
-	USERNAME_NOT_EXISTED("90001","用户名不存在"),
-	ERROR_USER_PASSWORD("90002","用户密码错误"),
+	LOGIN_FAIL("10000","登录失败"),
 
 	//注册
 

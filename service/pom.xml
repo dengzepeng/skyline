@@ -22,6 +22,11 @@
             <artifactId>repository</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.skyline</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 

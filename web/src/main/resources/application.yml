@@ -45,3 +45,8 @@ spring:
         reset-enable: true
         login-username: admin
         login-password: admin
+  jpa:
+    properties:
+     hibernate:
+      show-sql: true
+      format-sql: true

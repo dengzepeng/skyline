@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * 描述：
+ * 描述：记录访问设备信息
  * @author pengyao
  * 创建时间 2017/8/25.
  */
