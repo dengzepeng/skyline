@@ -11,6 +11,7 @@
 		<module>entity</module>
 		<module>repository</module>
 		<module>common</module>
+		<module>web</module>
 	</modules>
 	<packaging>pom</packaging>
 
