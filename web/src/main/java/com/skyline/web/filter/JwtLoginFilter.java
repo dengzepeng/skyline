@@ -63,7 +63,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
                                             FilterChain chain,
-                                            Authentication auth) throws IOException, ServletException {
+                                            Authentication auth) {
 
         String token = Jwts.builder()
                 .setSubject(JSONObject.parseObject(JSON.toJSONString(auth.getPrincipal())).getString("username"))

@@ -5,9 +5,9 @@ spring:
     druid:
       #==========================================JDBC配置===============================================
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://119.23.148.11/test?useUnicode=true&amp;characterEncoding=UTF-8
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false
       username: root
-      password: 9c29mTrCvIFH
+      password: 123456
       #==========================================连接池配置==============================================
       #初始化大小，最小，最大
       initial-size: 5
@@ -50,3 +50,13 @@ spring:
      hibernate:
       show-sql: true
       format-sql: true
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  tokenHead: "Bearer "
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+      register: "auth/register"
