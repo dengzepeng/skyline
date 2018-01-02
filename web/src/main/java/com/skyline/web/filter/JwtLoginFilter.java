@@ -6,21 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skyline.entity.po.TUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
-import org.springframework.util.Assert;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -39,7 +31,6 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
     public JwtLoginFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
-
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req,
@@ -63,14 +54,23 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
                                             FilterChain chain,
-                                            Authentication auth) {
+                                            Authentication auth) throws IOException {
 
         String token = Jwts.builder()
                 .setSubject(JSONObject.parseObject(JSON.toJSONString(auth.getPrincipal())).getString("username"))
                 .setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 24 * 1000))
                 .signWith(SignatureAlgorithm.HS512, "MyJwtSecret")
                 .compact();
-        res.addHeader("Authorization", "Bearer " + token);
+        String tokenStr = "Bearer " + token;
+        res.addHeader("Authorization", tokenStr);
+        res.setContentType("application/json");
+        res.setCharacterEncoding("utf8");
+        JSONObject json = new JSONObject();
+        json.put("code","200");
+        json.put("message","成功");
+        json.put("data",tokenStr);
+        res.getWriter().write(json.toJSONString());
+        res.getWriter().flush();
     }
 
 }
