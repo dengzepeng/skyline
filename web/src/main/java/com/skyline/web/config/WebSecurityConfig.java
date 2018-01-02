@@ -2,6 +2,8 @@ package com.skyline.web.config;
 
 import com.skyline.web.filter.JwtAuthenticationFilter;
 import com.skyline.web.filter.JwtLoginFilter;
+import com.skyline.web.handle.JwtLogoutHandle;
+import com.skyline.web.handle.JwtLogoutSuccessfulHandle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -11,6 +13,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 
 /**
  * @author skyline
@@ -33,11 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
+        http.csrf().disable().authorizeRequests()
                 //注册不需要鉴权
-                .antMatchers("/user/register","/login","/logout").permitAll()
+                .antMatchers("/user/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .logout().permitAll()
+                .and()
+                .addFilter(new LogoutFilter(new JwtLogoutSuccessfulHandle(),new JwtLogoutHandle()))
                 .addFilter(new JwtLoginFilter(authenticationManager()))
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()));
     }
