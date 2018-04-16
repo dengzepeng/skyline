@@ -45,8 +45,8 @@ public class User implements Serializable {
     @Column(name = "avatar",columnDefinition = "VARCHAR(255) COMMENT '头像'")
     private String avatar;
 
-    @Column(name = "create_time")
+    @Column(name = "create_time", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'")
     private LocalDate createTime;
-    @Column(name = "update_time")
+    @Column(name = "update_time", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'")
     private LocalDate updateTime;
 }

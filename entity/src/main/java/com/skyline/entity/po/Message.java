@@ -25,6 +25,11 @@ public class Message implements Serializable {
      */
     private String content;
 
+    /**
+     * 状态 0:未读 1：已读
+     */
+    private int status;
+
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }
