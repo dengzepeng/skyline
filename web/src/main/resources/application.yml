@@ -27,7 +27,7 @@ spring:
       pool-prepared-statements: true
       max-pool-prepared-statement-per-connection-size: 20
       #配置监控统计拦截的filters，去掉后监控界面sql无法统计，‘wall‘用于防火墙
-      filters: stat,wall,log4j
+      filters: stat,wall,log4j2
       #通过connectProperties属性来打开mergeSql功能；慢SQL记录
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
       #合并多个DruidDataSource的监控数据
@@ -46,10 +46,9 @@ spring:
         login-username: admin
         login-password: admin
   jpa:
-    properties:
-     hibernate:
-      show-sql: true
-      format-sql: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 jwt:
   header: Authorization
   secret: mySecret
@@ -60,3 +59,5 @@ jwt:
       path: auth
       refresh: refresh
       register: "auth/register"
+logging:
+  config: classpath:log4j2.xml
