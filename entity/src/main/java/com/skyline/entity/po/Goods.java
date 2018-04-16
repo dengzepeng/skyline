@@ -23,6 +23,10 @@ public class Goods implements Serializable {
      * 商品价格
      */
     private BigDecimal price;
+    /**
+     * 商品描述
+     */
+    private String desc;
 
 
     private LocalDateTime createTime;
