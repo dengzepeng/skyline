@@ -25,6 +25,7 @@ public class Activity implements Serializable {
     /**
      * 活动标题
      */
+    @Column(name = "title")
     private String title;
     /**
      * 活动开始时间
