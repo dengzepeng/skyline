@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.skyline</groupId>
-    <artifactId>springboot-integration</artifactId>
+    <artifactId>cloud</artifactId>
     <version>1.0.0</version>
     <modules>
         <module>service</module>
@@ -14,9 +14,6 @@
         <module>web</module>
     </modules>
     <packaging>pom</packaging>
-
-    <name>springboot-integration</name>
-    <description></description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

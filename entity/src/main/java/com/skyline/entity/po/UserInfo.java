@@ -44,6 +44,6 @@ public class UserInfo implements Serializable {
     @Column(name = "bonus_points", columnDefinition = "BIGINT DEFAULT 0 COMMENT '消费积分'")
     private long bonusPoints;
 
-    @Column(name = "update_time", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'")
+    @Column(name = "update_time", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'")
     private LocalDateTime updateTime;
 }

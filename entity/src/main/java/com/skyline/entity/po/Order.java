@@ -3,7 +3,9 @@ package com.skyline.entity.po;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -14,6 +16,8 @@ import java.time.LocalDateTime;
  * @date 2018/4/16 16:04
  */
 @Data
+@Entity
+@Table(name = "t_order")
 public class Order implements Serializable {
     /**
      * 订单id
@@ -32,6 +36,8 @@ public class Order implements Serializable {
      */
     private int status;
 
+    @Column(name = "create_time", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'")
     private LocalDateTime createTime;
+    @Column(name = "update_time", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'")
     private LocalDateTime updateTime;
 }

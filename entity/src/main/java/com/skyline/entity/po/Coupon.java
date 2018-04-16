@@ -4,6 +4,8 @@ package com.skyline.entity.po;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,11 +17,13 @@ import java.math.BigDecimal;
  * @date 2018/4/16 16:05
  */
 @Data
+@Entity
 @Table(name = "t_coupon")
 public class Coupon implements Serializable {
     /**
      * 优惠券id
      */
+    @Id
     @Column(name = "id", length = 18, columnDefinition = "BIGINT COMMENT 'id'")
     private long id;
 
