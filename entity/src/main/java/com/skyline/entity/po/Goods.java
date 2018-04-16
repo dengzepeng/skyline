@@ -1,31 +1,29 @@
 package com.skyline.entity.po;
 
-import lombok.Data;
-
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * 订单
+ * 商品
  *
  * @author skyline
- * @date 2018/4/16 16:04
+ * @date 2018/4/16 18:10
  */
-@Data
-public class Order implements Serializable {
+public class Goods implements Serializable {
     /**
-     * 订单id
+     * 商品id
      */
     private long id;
     /**
-     * 用户id
+     * 商品标题
      */
-    private long userId;
-
+    private String title;
     /**
-     * 订单状态 0：取消 1：创建 2：已完成
+     * 商品价格
      */
-    private int status;
+    private BigDecimal price;
+
 
     private LocalDateTime createTime;
     private LocalDateTime updateTime;

@@ -1,5 +1,7 @@
 package com.skyline.entity.po;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author skyline
  * @date 2018/4/16 16:28
  */
+@Data
 public class OrderGoods implements Serializable {
     /**
      * id

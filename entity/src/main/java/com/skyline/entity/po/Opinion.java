@@ -1,5 +1,7 @@
 package com.skyline.entity.po;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -9,6 +11,7 @@ import java.time.LocalDateTime;
  * @author skyline
  * @date 2018/4/16 16:06
  */
+@Data
 public class Opinion implements Serializable {
     /**
      * id
