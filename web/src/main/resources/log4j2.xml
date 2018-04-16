@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO" monitorInterval="180">
-	<Properties>
-		<Property name="log-path">/code/logs/skyline</Property>
+    <Properties>
+        <Property name="log-path">../logs/skyline</Property>
         <Property name="pattern">%d %p [%t] [%c] - %m%n</Property>
-	</Properties>
+    </Properties>
 
-	<Appenders>
-		<!-- 记录系统信息 -->
-		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout pattern="${pattern}" />
-		</Console>
+    <Appenders>
+        <!-- 记录系统信息 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}"/>
+        </Console>
 
-		<!-- 总日志 -->
-		<RollingFile name="total" fileName="${log-path}/total.log" filePattern="${log-path}/$${date:MM-dd}/total-%d{MM-dd-yyyy}.log.gz">
-			<Filters>
-				<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
-			</Filters>
-			<Policies>
-				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
-			</Policies>
-			<PatternLayout pattern="${pattern}" />
-		</RollingFile>
+        <!-- 总日志 -->
+        <RollingFile name="total" fileName="${log-path}/total.log"
+                     filePattern="${log-path}/$${date:MM-dd}/total-%d{MM-dd-yyyy}.log.gz">
+            <Filters>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <PatternLayout pattern="${pattern}"/>
+        </RollingFile>
 
-	</Appenders>
+    </Appenders>
 
-	<Loggers>
-		<!--控制台日志，线上环境改为info-->
-		<AsyncRoot level="debug">
-			<appender-ref ref="Console" />
-		</AsyncRoot>
+    <Loggers>
+        <!--控制台日志，线上环境改为info-->
+        <AsyncRoot level="debug">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="total" level="debug"/>
+        </AsyncRoot>
 
-		<!-- 总日志 -->
-		<AsyncLogger name="total" additivity="false" level="debug">
-            <appender-ref ref="total" level="debug" />
-		</AsyncLogger>
-	</Loggers>
+        <!-- 总日志 -->
+        <AsyncLogger name="total" additivity="false" level="debug">
+            <appender-ref ref="Console" level="debug"/>
+            <appender-ref ref="total" level="debug"/>
+        </AsyncLogger>
+
+        <!-- 第三方日志 -->
+        <logger name="org.springframework" level="info"/>
+        <logger name="org.hibernate" level="info"/>
+        <logger name="druid.sql" level="info"/>
+        <logger name="org.mybatis" level="info"/>
+
+    </Loggers>
+
 </Configuration>

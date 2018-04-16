@@ -54,10 +54,5 @@ jwt:
   secret: mySecret
   expiration: 604800
   tokenHead: "Bearer "
-  route:
-    authentication:
-      path: auth
-      refresh: refresh
-      register: "auth/register"
 logging:
   config: classpath:log4j2.xml
