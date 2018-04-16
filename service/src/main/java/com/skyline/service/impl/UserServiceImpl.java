@@ -2,7 +2,7 @@ package com.skyline.service.impl;
 
 import com.skyline.common.page.ResultInfo;
 import com.skyline.common.utils.sequence.IdWorker;
-import com.skyline.entity.po.TUser;
+import com.skyline.entity.po.User;
 import com.skyline.repository.UserRepository;
 import com.skyline.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +24,17 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public List<TUser> findAll() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
     @Override
-    public TUser findByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
-    public ResultInfo register(TUser user) {
+    public ResultInfo register(User user) {
         user.setUserId(idWorker.nextId());
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

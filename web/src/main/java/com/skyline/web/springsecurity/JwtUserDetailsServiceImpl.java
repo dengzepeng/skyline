@@ -1,6 +1,6 @@
 package com.skyline.web.springsecurity;
 
-import com.skyline.entity.po.TUser;
+import com.skyline.entity.po.User;
 import com.skyline.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,7 +24,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        final TUser user = userRepository.findByUsername(username);
+        final User user = userRepository.findByUsername(username);
         if (user == null) {
             //必须抛出UsernameNotFoundException异常
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));

@@ -1,7 +1,7 @@
 package com.skyline.service;
 
 import com.skyline.common.page.ResultInfo;
-import com.skyline.entity.po.TUser;
+import com.skyline.entity.po.User;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import java.util.List;
  * @date 2017.11.19
  */
 public interface UserService {
-    List<TUser> findAll();
+    List<User> findAll();
 
-    TUser findByUsername(String username);
+    User findByUsername(String username);
 
-    ResultInfo register(TUser user);
+    ResultInfo register(User user);
 }

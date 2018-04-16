@@ -12,9 +12,9 @@ import java.io.Serializable;
 @Entity
 @Table(name = "t_user")
 @Data
-public class TUser implements Serializable {
+public class User implements Serializable {
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id",length = 18)
     private long userId;
     @Column(name = "username")
     private String username;
