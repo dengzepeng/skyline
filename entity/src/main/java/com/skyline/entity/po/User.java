@@ -14,15 +14,39 @@ import java.time.LocalDate;
 @Table(name = "t_user")
 @Data
 public class User implements Serializable {
+    /**
+     * 用户id
+     */
     @Id
-    @Column(name = "user_id",length = 18)
+    @Column(name = "user_id",length = 18,columnDefinition = "BIGINT(18) COMMENT '用户id'")
     private long userId;
-    @Column(name = "username")
+
+    /**
+     * 用户名
+     */
+    @Column(name = "username",columnDefinition = "VARCHAR(255) COMMENT '用户名'")
     private String username;
-    @Column(name = "password")
+
+    /**
+     * 密码
+     */
+    @Column(name = "password",columnDefinition = "VARCHAR(255) COMMENT '密码'")
     private String password;
-    @Column(name = "mobile",length = 11)
+
+    /**
+     * 手机号
+     */
+    @Column(name = "mobile",length = 11,columnDefinition = "VARCHAR(11) COMMENT '手机号'")
     private String mobile;
+
+    /**
+     * 头像
+     */
+    @Column(name = "avatar",columnDefinition = "VARCHAR(255) COMMENT '头像'")
+    private String avatar;
+
     @Column(name = "create_time")
     private LocalDate createTime;
+    @Column(name = "update_time")
+    private LocalDate updateTime;
 }
