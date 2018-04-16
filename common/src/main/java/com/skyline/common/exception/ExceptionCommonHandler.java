@@ -1,7 +1,6 @@
 package com.skyline.common.exception;
 
 import com.skyline.common.constants.message.MessageEnum;
-import com.skyline.common.log.CommonLog;
 import com.skyline.common.page.ResultInfo;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,7 +21,6 @@ public class ExceptionCommonHandler {
             SimpleServiceException simple = (SimpleServiceException) e;
             return ResultInfo.failure(simple.getCode(),simple.getErrMessage());
         }else{
-            CommonLog.error("【系统异常】：",e);
             return ResultInfo.response(MessageEnum.SYSTEM_EXCEPTION);
         }
     }

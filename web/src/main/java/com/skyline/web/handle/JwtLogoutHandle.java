@@ -1,6 +1,5 @@
 package com.skyline.web.handle;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
