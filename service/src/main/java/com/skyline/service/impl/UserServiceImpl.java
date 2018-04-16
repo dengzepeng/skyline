@@ -1,7 +1,7 @@
 package com.skyline.service.impl;
 
 import com.skyline.common.page.ResultInfo;
-import com.skyline.common.utils.sequence.UUID32;
+import com.skyline.common.utils.sequence.IdWorker;
 import com.skyline.entity.po.TUser;
 import com.skyline.repository.UserRepository;
 import com.skyline.service.UserService;
@@ -18,6 +18,8 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static IdWorker idWorker = new IdWorker();
+
     @Autowired
     private UserRepository userRepository;
 
@@ -33,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultInfo register(TUser user) {
-        user.setUserId(UUID32.uuid());
+        user.setUserId(idWorker.nextId());
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         final String rawPassword = user.getPassword();
