@@ -2,6 +2,8 @@ package com.skyline.entity.po;
 
 import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -12,10 +14,12 @@ import java.time.LocalDateTime;
  * @date 2018/4/16 16:06
  */
 @Data
+@Table(name = "t_opinion")
 public class Opinion implements Serializable {
     /**
      * id
      */
+    @Column(name = "id", length = 18, columnDefinition = "BIGINT COMMENT 'id'")
     private long id;
     /**
      * 用户id
